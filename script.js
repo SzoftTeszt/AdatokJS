@@ -28,6 +28,7 @@ function fejlecRajzol(){
     config.forEach(
         function(oszlop){
         o=document.createElement('div') 
+        
         o.className="col"
         o.innerHTML= oszlop.text 
         sor.appendChild(o)
@@ -47,7 +48,27 @@ function adatokatMegjelenit(){
                 function(oszlop){
                 o=document.createElement('div') 
                 o.className="col"
-                o.innerHTML= auto[oszlop.key] 
+                switch (oszlop.type){
+                case 'plain':
+                    o.innerHTML= auto[oszlop.key]
+                    break
+                default:
+                    //  o.innerHTML=`<input 
+                    //                 class="form-control" 
+                    //                 type="${oszlop.type}" 
+                    //                 value="${auto[oszlop.key]}">`
+
+                    i=document.createElement('input')
+                    i.type=oszlop.type
+                    i.value=auto[oszlop.key]
+                    i.className="form-control"
+                    o.appendChild(i)
+
+                    // o.innerHTML='<input type="'+oszlop.type+'">' 
+                }
+
+
+
                 sor.appendChild(o)
                 }
             )
